@@ -8,7 +8,9 @@ public class GameBehavior : MonoBehaviour
     public bool timerRunning = false;
     public bool circleClicked = false;
     [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] public TextMeshProUGUI highScoreText;
     [SerializeField] GameObject instructionsText;
+    [SerializeField] public GameObject restartText;
 
     public float timer = 0f;
 
