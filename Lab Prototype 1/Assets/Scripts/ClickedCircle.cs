@@ -11,7 +11,13 @@ public class ClickedCircle : MonoBehaviour
     void OnMouseDown()
     {
         gb.timerRunning = false;
-        gb.highScoreText.text = $"High Score: {gb.timer}s";
+
+        if (gb.timer > gb.highScore)
+        {
+            gb.highScore = gb.timer;
+            JSONManager.instance.SaveData();
+        }
+        gb.highScoreText.text = $"High Score: {gb.highScore}s";
         gb.restartText.SetActive(true);
     }
 }

@@ -13,6 +13,14 @@ public class GameBehavior : MonoBehaviour
     [SerializeField] public GameObject restartText;
 
     public float timer = 0f;
+    public float highScore = 0f;
+
+    void Start()
+    {
+        var data = JSONManager.instance.LoadData();
+        highScore = data.playerData.highScore;
+        highScoreText.text = $"High Score: {highScore}s";
+    }
 
     void Update()
     {

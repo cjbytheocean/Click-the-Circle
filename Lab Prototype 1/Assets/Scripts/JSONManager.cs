@@ -3,6 +3,8 @@ using System.IO;
 
 public class JSONManager : MonoBehaviour
 {
+    
+
     [System.Serializable]
     public class PlayerData
     {
@@ -16,7 +18,7 @@ public class JSONManager : MonoBehaviour
     }
 
     public static JSONManager instance;
-    private string filePath = Application.dataPath + "/JSONData.json";
+    private string filePath;
 
     void Awake()
     {
@@ -28,9 +30,10 @@ public class JSONManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        filePath = Application.persistentDataPath + "/JSONData.json";
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -57,9 +60,8 @@ public class JSONManager : MonoBehaviour
     public AllData GetData()
     {
         AllData data = new AllData();
-
-        //data.playerData = GameManager.instance.JSONGetPlayerData();
-
+        data.playerData = new PlayerData();
+        data.playerData.highScore = FindAnyObjectByType<GameBehavior>().highScore;
         return data;
     }
 
